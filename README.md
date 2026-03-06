@@ -131,12 +131,12 @@ assistant: Based on the FastAPI class definition...
 
 ### Book Mode / 교재 모드 — `/book`
 
-외부 코드베이스(GitHub 또는 로컬)를 참고 교재로 인덱싱합니다.
-Index external codebases as reference material.
+외부 코드베이스(로컬에 클론된 저장소 또는 로컬 경로)를 참고 교재로 인덱싱합니다.
+Index external codebases (local cloned repos or local paths) as reference material.
 
 | Command | Description / 설명 |
 |---------|-------------|
-| `/index <url or path>` | 교재 인덱싱 — Index a new book |
+| `/index <local-path>` | 로컬 경로의 코드베이스를 교재로 인덱싱 — Index a local codebase as book |
 | `/search <name>` | 교재 심볼 검색 — Search book symbols |
 | `/choose <number>` | 카트에 추가 — Add to cart |
 | `/remove <number>` | 카트에서 제거 — Remove from cart |
