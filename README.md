@@ -130,6 +130,9 @@ Index external codebases (local cloned repos or local paths) as reference materi
 
 ## LLM Configuration
 
+> **Minimum recommended models**: Gemini Flash or Claude Sonnet and above.
+> Small context models may not perform well even with symbol injection — the injected context requires sufficient context window size for accurate code generation.
+
 On first run, configure your LLM provider:
 
 ```
@@ -137,9 +140,9 @@ On first run, configure your LLM provider:
 ```
 
 Supported providers:
-- **Claude** (Anthropic) — requires `ANTHROPIC_API_KEY`
-- **Gemini** (Google) — requires `GEMINI_API_KEY`
-- **Ollama** (Local) — no key needed, runs locally
+- **Claude** (Anthropic) — requires `ANTHROPIC_API_KEY` (Sonnet or above recommended)
+- **Gemini** (Google) — requires `GEMINI_API_KEY` (Flash or above recommended)
+- **Ollama** (Local) — no key needed, runs locally (use 7B+ parameter models)
 
 API keys are encrypted at rest with libsodium and protected by a master password.
 
@@ -286,6 +289,9 @@ assistant: FastAPI 클래스 정의를 기반으로...
 
 ## LLM 설정
 
+> **최소 권장 모델**: Gemini Flash 또는 Claude Sonnet 이상.
+> 컨텍스트 크기가 작은 소형 모델은 심볼을 주입해도 컨텍스트 용량이 부족하여 코드 생성 품질이 떨어질 수 있습니다.
+
 최초 실행 시 LLM 프로바이더를 설정하세요:
 
 ```
@@ -293,9 +299,9 @@ assistant: FastAPI 클래스 정의를 기반으로...
 ```
 
 지원 프로바이더:
-- **Claude** (Anthropic) — `ANTHROPIC_API_KEY` 필요
-- **Gemini** (Google) — `GEMINI_API_KEY` 필요
-- **Ollama** (로컬) — 키 불필요, 로컬 실행
+- **Claude** (Anthropic) — `ANTHROPIC_API_KEY` 필요 (Sonnet 이상 권장)
+- **Gemini** (Google) — `GEMINI_API_KEY` 필요 (Flash 이상 권장)
+- **Ollama** (로컬) — 키 불필요, 로컬 실행 (7B+ 파라미터 모델 권장)
 
 API 키는 libsodium으로 암호화되어 저장되며, 마스터 비밀번호로 보호됩니다.
 
