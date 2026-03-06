@@ -57,15 +57,20 @@ Any codebase, indexed in seconds. Symbol queries in microseconds. No database, n
 
 Download the latest binary from [Releases](https://github.com/leejongha45-beep/jit-cli/releases).
 
+| Platform | Architecture | File |
+|----------|-------------|------|
+| Windows | x64 | `jit.exe` |
+| macOS | arm64 (Apple Silicon) | `jit-macos-arm64` |
+
 ### Windows
 ```
 jit.exe [path]
 ```
 
-### macOS / Linux
+### macOS
 ```bash
-chmod +x jit
-./jit [path]
+chmod +x jit-macos-arm64
+./jit-macos-arm64 [path]
 ```
 
 If no path is given, JIT uses the current working directory.
@@ -160,6 +165,46 @@ Supported providers:
 
 API keys are encrypted at rest with libsodium and protected by a master password.
 
+## Workflow
+
+```
+1. Start — Index your workspace
+   $ jit /my/project
+   4360 source files found. Index? [Y/n]
+
+2. Configure — Set up LLM provider (first time only)
+   /config
+
+3. Chat — Talk with LLM using @symbol context injection
+   chat> @MyClass refactor this class
+
+4. Query — Explore symbol graph + review code + select
+   /query
+     → /search MyClass            (find symbols)
+     → /opencode MyClass          (review source code)
+     → /choose 1                  (add to cart)
+     → /smart MyClass             (BFS — discover related symbols)
+     → /opencode Dependency       (review dependency code)
+     → /choose 3                  (select what you need)
+     → /finish                    (send to Chat)
+
+5. Book — Index external codebases as reference
+   /book
+     → /index /path/to/reference  (index external codebase)
+     → /search AActor             (find symbols)
+     → /opencode AActor           (review reference code)
+     → /choose 1                  (select)
+     → /finish                    (send to Chat)
+
+6. Verify — Double-check LLM output against real code
+   chat> LLM suggests calling Init()...
+     → /opencode Init             (is that actually how it works?)
+     → confirm or correct
+
+7. Patch — Apply LLM-generated code directly to file
+   /patch myfile.cpp
+```
+
 ## How It Works
 
 ```
@@ -230,15 +275,20 @@ JIT는 코드베이스를 인메모리 심볼 그래프로 인덱싱한 뒤, 정
 
 [Releases](https://github.com/leejongha45-beep/jit-cli/releases) 페이지에서 OS에 맞는 바이너리를 다운로드하세요.
 
+| 플랫폼 | 아키텍처 | 파일 |
+|--------|---------|------|
+| Windows | x64 | `jit.exe` |
+| macOS | arm64 (Apple Silicon) | `jit-macos-arm64` |
+
 ### Windows
 ```
 jit.exe [경로]
 ```
 
-### macOS / Linux
+### macOS
 ```bash
-chmod +x jit
-./jit [경로]
+chmod +x jit-macos-arm64
+./jit-macos-arm64 [경로]
 ```
 
 경로를 생략하면 현재 작업 디렉토리를 사용합니다.
@@ -332,6 +382,46 @@ assistant: FastAPI 클래스 정의를 기반으로...
 - **Ollama** (로컬) — 키 불필요, 로컬 실행 (7B+ 파라미터 모델 권장)
 
 API 키는 libsodium으로 암호화되어 저장되며, 마스터 비밀번호로 보호됩니다.
+
+## 워크플로우
+
+```
+1. 시작 — 워크스페이스 인덱싱
+   $ jit /my/project
+   4360 source files found. Index? [Y/n]
+
+2. 설정 — LLM 프로바이더 설정 (최초 1회)
+   /config
+
+3. 채팅 — @심볼로 코드 컨텍스트 주입하며 대화
+   chat> @MyClass 이 클래스 리팩토링해줘
+
+4. 쿼리 — 심볼 그래프 탐색 + 코드 확인 + 선택
+   /query
+     → /search MyClass            (심볼 검색)
+     → /opencode MyClass          (소스코드 확인)
+     → /choose 1                  (카트에 추가)
+     → /smart MyClass             (BFS — 관련 심볼 탐색)
+     → /opencode Dependency       (의존 심볼 코드 확인)
+     → /choose 3                  (필요한 것만 선택)
+     → /finish                    (Chat으로 전송)
+
+5. 교재 — 외부 코드베이스를 참고 교재로 추가
+   /book
+     → /index /path/to/reference  (외부 코드베이스 인덱싱)
+     → /search AActor             (심볼 검색)
+     → /opencode AActor           (레퍼런스 코드 확인)
+     → /choose 1                  (선택)
+     → /finish                    (Chat으로 전송)
+
+6. 검증 — LLM 출력이 의심될 때 실제 코드로 확인
+   chat> LLM이 Init() 호출을 제안...
+     → /opencode Init             (실제로 그렇게 동작하나?)
+     → 확인 후 수정 또는 채택
+
+7. 패치 — LLM 생성 코드를 파일에 바로 적용
+   /patch myfile.cpp
+```
 
 ## 동작 원리
 
