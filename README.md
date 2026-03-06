@@ -14,19 +14,33 @@ JIT indexes your codebase into an in-memory symbol graph, then lets you chat wit
 
 Any codebase, indexed in seconds. Symbol queries in microseconds. No database, no server — just a single binary.
 
-```
-$ jit /path/to/your/project
-1118 source files found. Index? [Y/n]
-Indexed 1118 files, 11963 symbols (0.14s)
-```
+![JIT startup](screenshots/01-startup.png)
 
 ## Benchmarks
 
-| Codebase | Files | Symbols | Index Time | Query |
-|----------|-------|---------|------------|-------|
-| FastAPI | 1,118 | 11,963 | 0.14s | < 1ms |
-| Unreal Engine 5.7 | 28,000 | 888,000 | 49s | 2.6ms |
-| Linux Kernel | 63,090 | 7,480,270 | 88s | 0.19ms |
+| Codebase | Files | Symbols | Index Time |
+|----------|-------|---------|------------|
+| FastAPI | 1,119 | 12,182 | 12.8s |
+| Unreal Engine 5.7 | 57,254 | 10,032,665 | 152s |
+| Linux Kernel | 63,451 | 7,960,376 | 85s |
+
+## Screenshots
+
+### Book Mode — Index any codebase as reference
+
+![UE5 indexing](screenshots/02-ue5-indexing.png)
+
+### Symbol Search — Find symbols across millions of entries
+
+![UE5 AActor search](screenshots/03-ue5-search.png)
+
+### Open Code — View full source code of any symbol
+
+![UE5 Possess opencode](screenshots/04-ue5-opencode.png)
+
+### Python Support — Index and search Python codebases
+
+![FastAPI search](screenshots/05-fastapi-search.png)
 
 ## Tech Stack
 
@@ -173,19 +187,33 @@ JIT는 코드베이스를 인메모리 심볼 그래프로 인덱싱한 뒤, 정
 
 코드베이스를 초 단위로 인덱싱하고, 마이크로초 단위로 심볼을 검색합니다. DB 없이, 서버 없이 — 바이너리 하나로 동작합니다.
 
-```
-$ jit /path/to/your/project
-1118 source files found. Index? [Y/n]
-Indexed 1118 files, 11963 symbols (0.14s)
-```
+![JIT 시작 화면](screenshots/01-startup.png)
 
 ## 벤치마크
 
-| 코드베이스 | 파일 수 | 심볼 수 | 인덱싱 시간 | 쿼리 |
-|----------|-------|---------|------------|-------|
-| FastAPI | 1,118 | 11,963 | 0.14초 | < 1ms |
-| Unreal Engine 5.7 | 28,000 | 888,000 | 49초 | 2.6ms |
-| Linux Kernel | 63,090 | 7,480,270 | 88초 | 0.19ms |
+| 코드베이스 | 파일 수 | 심볼 수 | 인덱싱 시간 |
+|----------|-------|---------|------------|
+| FastAPI | 1,119 | 12,182 | 12.8초 |
+| Unreal Engine 5.7 | 57,254 | 10,032,665 | 152초 |
+| Linux Kernel | 63,451 | 7,960,376 | 85초 |
+
+## 스크린샷
+
+### 교재 모드 — 외부 코드베이스를 참고 교재로 인덱싱
+
+![UE5 인덱싱](screenshots/02-ue5-indexing.png)
+
+### 심볼 검색 — 수백만 심볼에서 즉시 검색
+
+![UE5 AActor 검색](screenshots/03-ue5-search.png)
+
+### 소스코드 열기 — 심볼의 전체 소스코드 표시
+
+![UE5 Possess 소스코드](screenshots/04-ue5-opencode.png)
+
+### Python 지원 — Python 코드베이스 인덱싱 및 검색
+
+![FastAPI 검색](screenshots/05-fastapi-search.png)
 
 ## 기술 스택
 
